@@ -2,23 +2,13 @@
 (function (global){
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
@@ -28,31 +18,40 @@ var _Select = require('./Select');
 
 var _Select2 = _interopRequireDefault(_Select);
 
-var _utilsStripDiacritics = require('./utils/stripDiacritics');
+var _stripDiacritics = require('./utils/stripDiacritics');
 
-var _utilsStripDiacritics2 = _interopRequireDefault(_utilsStripDiacritics);
+var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var propTypes = {
-	autoload: _react2['default'].PropTypes.bool.isRequired, // automatically call the `loadOptions` prop on-mount; defaults to true
-	cache: _react2['default'].PropTypes.any, // object to use to cache results; set to null/false to disable caching
-	children: _react2['default'].PropTypes.func.isRequired, // Child function responsible for creating the inner Select component; (props: Object): PropTypes.element
-	ignoreAccents: _react2['default'].PropTypes.bool, // strip diacritics when filtering; defaults to true
-	ignoreCase: _react2['default'].PropTypes.bool, // perform case-insensitive filtering; defaults to true
-	loadingPlaceholder: _react2['default'].PropTypes.oneOfType([// replaces the placeholder while options are loading
-	_react2['default'].PropTypes.string, _react2['default'].PropTypes.node]),
-	loadOptions: _react2['default'].PropTypes.func.isRequired, // callback to load options asynchronously; (inputValue: string, callback: Function): ?Promise
+	autoload: _react2.default.PropTypes.bool.isRequired, // automatically call the `loadOptions` prop on-mount; defaults to true
+	cache: _react2.default.PropTypes.any, // object to use to cache results; set to null/false to disable caching
+	children: _react2.default.PropTypes.func.isRequired, // Child function responsible for creating the inner Select component; (props: Object): PropTypes.element
+	ignoreAccents: _react2.default.PropTypes.bool, // strip diacritics when filtering; defaults to true
+	ignoreCase: _react2.default.PropTypes.bool, // perform case-insensitive filtering; defaults to true
+	loadingPlaceholder: _react2.default.PropTypes.oneOfType([// replaces the placeholder while options are loading
+	_react2.default.PropTypes.string, _react2.default.PropTypes.node]),
+	loadOptions: _react2.default.PropTypes.func.isRequired, // callback to load options asynchronously; (inputValue: string, callback: Function): ?Promise
 	options: _react.PropTypes.array.isRequired, // array of options
-	placeholder: _react2['default'].PropTypes.oneOfType([// field placeholder, displayed when there's no value (shared with Select)
-	_react2['default'].PropTypes.string, _react2['default'].PropTypes.node]),
-	noResultsText: _react2['default'].PropTypes.oneOfType([// field noResultsText, displayed when no options come back from the server
-	_react2['default'].PropTypes.string, _react2['default'].PropTypes.node]),
-	onChange: _react2['default'].PropTypes.func, // onChange handler: function (newValue) {}
-	searchPromptText: _react2['default'].PropTypes.oneOfType([// label to prompt for search input
-	_react2['default'].PropTypes.string, _react2['default'].PropTypes.node]),
-	onInputChange: _react2['default'].PropTypes.func, // optional for keeping track of what is being typed
-	value: _react2['default'].PropTypes.any };
+	placeholder: _react2.default.PropTypes.oneOfType([// field placeholder, displayed when there's no value (shared with Select)
+	_react2.default.PropTypes.string, _react2.default.PropTypes.node]),
+	noResultsText: _react2.default.PropTypes.oneOfType([// field noResultsText, displayed when no options come back from the server
+	_react2.default.PropTypes.string, _react2.default.PropTypes.node]),
+	onChange: _react2.default.PropTypes.func, // onChange handler: function (newValue) {}
+	searchPromptText: _react2.default.PropTypes.oneOfType([// label to prompt for search input
+	_react2.default.PropTypes.string, _react2.default.PropTypes.node]),
+	onInputChange: _react2.default.PropTypes.func, // optional for keeping track of what is being typed
+	value: _react2.default.PropTypes.any };
 
-// initial field value
 var defaultCache = {};
 
 var defaultProps = {
@@ -66,28 +65,30 @@ var defaultProps = {
 	searchPromptText: 'Type to search'
 };
 
-var Async = (function (_Component) {
+var Async = function (_Component) {
 	_inherits(Async, _Component);
 
 	function Async(props, context) {
 		_classCallCheck(this, Async);
 
-		_get(Object.getPrototypeOf(Async.prototype), 'constructor', this).call(this, props, context);
+		var _this = _possibleConstructorReturn(this, (Async.__proto__ || Object.getPrototypeOf(Async)).call(this, props, context));
 
-		this._cache = props.cache === defaultCache ? {} : props.cache;
+		_this._cache = props.cache === defaultCache ? {} : props.cache;
 
-		this.state = {
+		_this.state = {
 			isLoading: false,
 			options: props.options
 		};
 
-		this._onInputChange = this._onInputChange.bind(this);
+		_this._onInputChange = _this._onInputChange.bind(_this);
+		return _this;
 	}
 
 	_createClass(Async, [{
 		key: 'componentDidMount',
 		value: function componentDidMount() {
 			var autoload = this.props.autoload;
+
 
 			if (autoload) {
 				this.loadOptions('');
@@ -96,12 +97,12 @@ var Async = (function (_Component) {
 	}, {
 		key: 'componentWillUpdate',
 		value: function componentWillUpdate(nextProps, nextState) {
-			var _this = this;
+			var _this2 = this;
 
 			var propertiesToSync = ['options'];
 			propertiesToSync.forEach(function (prop) {
-				if (_this.props[prop] !== nextProps[prop]) {
-					_this.setState(_defineProperty({}, prop, nextProps[prop]));
+				if (_this2.props[prop] !== nextProps[prop]) {
+					_this2.setState(_defineProperty({}, prop, nextProps[prop]));
 				}
 			});
 		}
@@ -113,7 +114,7 @@ var Async = (function (_Component) {
 	}, {
 		key: 'loadOptions',
 		value: function loadOptions(inputValue) {
-			var _this2 = this;
+			var _this3 = this;
 
 			var loadOptions = this.props.loadOptions;
 
@@ -128,8 +129,8 @@ var Async = (function (_Component) {
 			}
 
 			var callback = function callback(error, data) {
-				if (callback === _this2._callback) {
-					_this2._callback = null;
+				if (callback === _this3._callback) {
+					_this3._callback = null;
 
 					var options = data && data.options || [];
 
@@ -137,7 +138,7 @@ var Async = (function (_Component) {
 						cache[inputValue] = options;
 					}
 
-					_this2.setState({
+					_this3.setState({
 						isLoading: false,
 						options: options
 					});
@@ -167,13 +168,14 @@ var Async = (function (_Component) {
 	}, {
 		key: '_onInputChange',
 		value: function _onInputChange(inputValue) {
-			var _props = this.props;
-			var ignoreAccents = _props.ignoreAccents;
-			var ignoreCase = _props.ignoreCase;
-			var onInputChange = _props.onInputChange;
+			var _props = this.props,
+			    ignoreAccents = _props.ignoreAccents,
+			    ignoreCase = _props.ignoreCase,
+			    onInputChange = _props.onInputChange;
+
 
 			if (ignoreAccents) {
-				inputValue = (0, _utilsStripDiacritics2['default'])(inputValue);
+				inputValue = (0, _stripDiacritics2.default)(inputValue);
 			}
 
 			if (ignoreCase) {
@@ -197,11 +199,12 @@ var Async = (function (_Component) {
 	}, {
 		key: 'noResultsText',
 		value: function noResultsText() {
-			var _props2 = this.props;
-			var loadingPlaceholder = _props2.loadingPlaceholder;
-			var noResultsText = _props2.noResultsText;
-			var searchPromptText = _props2.searchPromptText;
+			var _props2 = this.props,
+			    loadingPlaceholder = _props2.loadingPlaceholder,
+			    noResultsText = _props2.noResultsText,
+			    searchPromptText = _props2.searchPromptText;
 			var isLoading = this.state.isLoading;
+
 
 			var inputValue = this.inputValue();
 
@@ -216,28 +219,29 @@ var Async = (function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var _this3 = this;
+			var _this4 = this;
 
-			var _props3 = this.props;
-			var children = _props3.children;
-			var loadingPlaceholder = _props3.loadingPlaceholder;
-			var placeholder = _props3.placeholder;
-			var _state = this.state;
-			var isLoading = _state.isLoading;
-			var options = _state.options;
+			var _props3 = this.props,
+			    children = _props3.children,
+			    loadingPlaceholder = _props3.loadingPlaceholder,
+			    placeholder = _props3.placeholder;
+			var _state = this.state,
+			    isLoading = _state.isLoading,
+			    options = _state.options;
+
 
 			var props = {
 				noResultsText: this.noResultsText(),
 				placeholder: isLoading ? loadingPlaceholder : placeholder,
 				options: isLoading && loadingPlaceholder ? [] : options,
 				ref: function ref(_ref) {
-					return _this3.select = _ref;
+					return _this4.select = _ref;
 				},
 				onChange: function onChange(newValues) {
-					if (_this3.props.value && newValues.length > _this3.props.value.length) {
-						_this3.clearOptions();
+					if (_this4.props.value && newValues.length > _this4.props.value.length) {
+						_this4.clearOptions();
 					}
-					_this3.props.onChange(newValues);
+					_this4.props.onChange(newValues);
 				}
 			};
 
@@ -249,15 +253,14 @@ var Async = (function (_Component) {
 	}]);
 
 	return Async;
-})(_react.Component);
+}(_react.Component);
 
-exports['default'] = Async;
+exports.default = Async;
 
-Async.propTypes = propTypes;
 Async.defaultProps = defaultProps;
 
 function defaultChildren(props) {
-	return _react2['default'].createElement(_Select2['default'], props);
+	return _react2.default.createElement(_Select2.default, props);
 };
 module.exports = exports['default'];
 
@@ -268,8 +271,6 @@ module.exports = exports['default'];
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
 var _react2 = _interopRequireDefault(_react);
@@ -278,24 +279,40 @@ var _Select = require('./Select');
 
 var _Select2 = _interopRequireDefault(_Select);
 
-var AsyncCreatable = _react2['default'].createClass({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function reduce(obj) {
+	var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	return Object.keys(obj).reduce(function (props, key) {
+		var value = obj[key];
+		if (value !== undefined) props[key] = value;
+		return props;
+	}, props);
+}
+
+var AsyncCreatable = _react2.default.createClass({
 	displayName: 'AsyncCreatableSelect',
 
 	render: function render() {
 		var _this = this;
 
-		return _react2['default'].createElement(
-			_Select2['default'].Async,
+		return _react2.default.createElement(
+			_Select2.default.Async,
 			this.props,
 			function (asyncProps) {
-				return _react2['default'].createElement(
-					_Select2['default'].Creatable,
+				return _react2.default.createElement(
+					_Select2.default.Creatable,
 					_this.props,
 					function (creatableProps) {
-						return _react2['default'].createElement(_Select2['default'], _extends({}, asyncProps, creatableProps, {
-							onInputChange: function (input) {
+						return _react2.default.createElement(_Select2.default, _extends({}, reduce(asyncProps, reduce(creatableProps, {})), {
+							onInputChange: function onInputChange(input) {
 								creatableProps.onInputChange(input);
 								return asyncProps.onInputChange(input);
+							},
+							ref: function ref(_ref) {
+								creatableProps.ref(_ref);
+								asyncProps.ref(_ref);
 							}
 						}));
 					}
@@ -314,10 +331,6 @@ module.exports = AsyncCreatable;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
 var _react2 = _interopRequireDefault(_react);
@@ -326,55 +339,20 @@ var _Select = require('./Select');
 
 var _Select2 = _interopRequireDefault(_Select);
 
-var _utilsDefaultFilterOptions = require('./utils/defaultFilterOptions');
+var _defaultFilterOptions = require('./utils/defaultFilterOptions');
 
-var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
+var _defaultFilterOptions2 = _interopRequireDefault(_defaultFilterOptions);
 
-var _utilsDefaultMenuRenderer = require('./utils/defaultMenuRenderer');
+var _defaultMenuRenderer = require('./utils/defaultMenuRenderer');
 
-var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
+var _defaultMenuRenderer2 = _interopRequireDefault(_defaultMenuRenderer);
 
-var Creatable = _react2['default'].createClass({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var Creatable = _react2.default.createClass({
 	displayName: 'CreatableSelect',
-
-	propTypes: {
-		// Child function responsible for creating the inner Select component
-		// This component can be used to compose HOCs (eg Creatable and Async)
-		// (props: Object): PropTypes.element
-		children: _react2['default'].PropTypes.func,
-
-		// See Select.propTypes.filterOptions
-		filterOptions: _react2['default'].PropTypes.any,
-
-		// Searches for any matching option within the set of options.
-		// This function prevents duplicate options from being created.
-		// ({ option: Object, options: Array, labelKey: string, valueKey: string }): boolean
-		isOptionUnique: _react2['default'].PropTypes.func,
-
-		// Determines if the current input text represents a valid option.
-		// ({ label: string }): boolean
-		isValidNewOption: _react2['default'].PropTypes.func,
-
-		// See Select.propTypes.menuRenderer
-		menuRenderer: _react2['default'].PropTypes.any,
-
-		// Factory to create new option.
-		// ({ label: string, labelKey: string, valueKey: string }): Object
-		newOptionCreator: _react2['default'].PropTypes.func,
-
-		// input keyDown handler: function (event) {}
-		onInputKeyDown: _react2['default'].PropTypes.func,
-
-		// See Select.propTypes.options
-		options: _react2['default'].PropTypes.array,
-
-		// Creates prompt/placeholder option text.
-		// (filterText: string): string
-		promptTextCreator: _react2['default'].PropTypes.func,
-
-		// Decides if a keyDown event (eg its `keyCode`) should result in the creation of a new option.
-		shouldKeyDownEventCreateNewOption: _react2['default'].PropTypes.func
-	},
 
 	// Default prop methods
 	statics: {
@@ -387,23 +365,24 @@ var Creatable = _react2['default'].createClass({
 
 	getDefaultProps: function getDefaultProps() {
 		return {
-			filterOptions: _utilsDefaultFilterOptions2['default'],
+			filterOptions: _defaultFilterOptions2.default,
 			isOptionUnique: isOptionUnique,
 			isValidNewOption: isValidNewOption,
-			menuRenderer: _utilsDefaultMenuRenderer2['default'],
+			menuRenderer: _defaultMenuRenderer2.default,
 			newOptionCreator: newOptionCreator,
 			promptTextCreator: promptTextCreator,
 			shouldKeyDownEventCreateNewOption: shouldKeyDownEventCreateNewOption
 		};
 	},
-
 	createNewOption: function createNewOption() {
-		var _props = this.props;
-		var isValidNewOption = _props.isValidNewOption;
-		var newOptionCreator = _props.newOptionCreator;
-		var _props$options = _props.options;
-		var options = _props$options === undefined ? [] : _props$options;
-		var shouldKeyDownEventCreateNewOption = _props.shouldKeyDownEventCreateNewOption;
+		var _props = this.props,
+		    isValidNewOption = _props.isValidNewOption,
+		    newOptionCreator = _props.newOptionCreator,
+		    onNewOptionClick = _props.onNewOptionClick,
+		    _props$options = _props.options,
+		    options = _props$options === undefined ? [] : _props$options,
+		    shouldKeyDownEventCreateNewOption = _props.shouldKeyDownEventCreateNewOption;
+
 
 		if (isValidNewOption({ label: this.inputValue })) {
 			var option = newOptionCreator({ label: this.inputValue, labelKey: this.labelKey, valueKey: this.valueKey });
@@ -411,29 +390,34 @@ var Creatable = _react2['default'].createClass({
 
 			// Don't add the same option twice.
 			if (_isOptionUnique) {
-				options.unshift(option);
+				if (onNewOptionClick) {
+					onNewOptionClick(option);
+				} else {
+					options.unshift(option);
 
-				this.select.selectValue(option);
+					this.select.selectValue(option);
+				}
 			}
 		}
 	},
-
 	filterOptions: function filterOptions() {
-		var _props2 = this.props;
-		var filterOptions = _props2.filterOptions;
-		var isValidNewOption = _props2.isValidNewOption;
-		var options = _props2.options;
-		var promptTextCreator = _props2.promptTextCreator;
+		var _props2 = this.props,
+		    filterOptions = _props2.filterOptions,
+		    isValidNewOption = _props2.isValidNewOption,
+		    options = _props2.options,
+		    promptTextCreator = _props2.promptTextCreator;
 
 		// TRICKY Check currently selected options as well.
 		// Don't display a create-prompt for a value that's selected.
 		// This covers async edge-cases where a newly-created Option isn't yet in the async-loaded array.
-		var excludeOptions = arguments[2] || [];
+
+		var excludeOptions = (arguments.length <= 2 ? undefined : arguments[2]) || [];
 
 		var filteredOptions = filterOptions.apply(undefined, arguments) || [];
 
 		if (isValidNewOption({ label: this.inputValue })) {
 			var _newOptionCreator = this.props.newOptionCreator;
+
 
 			var option = _newOptionCreator({
 				label: this.inputValue,
@@ -449,10 +433,10 @@ var Creatable = _react2['default'].createClass({
 			});
 
 			if (_isOptionUnique2) {
-				var _prompt = promptTextCreator(this.inputValue);
+				var prompt = promptTextCreator(this.inputValue);
 
 				this._createPlaceholderOption = _newOptionCreator({
-					label: _prompt,
+					label: prompt,
 					labelKey: this.labelKey,
 					valueKey: this.valueKey
 				});
@@ -463,11 +447,11 @@ var Creatable = _react2['default'].createClass({
 
 		return filteredOptions;
 	},
-
-	isOptionUnique: function isOptionUnique(_ref2) {
-		var option = _ref2.option;
-		var options = _ref2.options;
+	isOptionUnique: function isOptionUnique(_ref) {
+		var option = _ref.option,
+		    options = _ref.options;
 		var isOptionUnique = this.props.isOptionUnique;
+
 
 		options = options || this.select.filterOptions();
 
@@ -478,24 +462,30 @@ var Creatable = _react2['default'].createClass({
 			valueKey: this.valueKey
 		});
 	},
-
 	menuRenderer: function menuRenderer(params) {
 		var menuRenderer = this.props.menuRenderer;
 
+
 		return menuRenderer(_extends({}, params, {
-			onSelect: this.onOptionSelect
+			onSelect: this.onOptionSelect,
+			selectValue: this.onOptionSelect
 		}));
 	},
-
 	onInputChange: function onInputChange(input) {
+		var onInputChange = this.props.onInputChange;
+
+
+		if (onInputChange) {
+			onInputChange(input);
+		}
+
 		// This value may be needed in between Select mounts (when this.select is null)
 		this.inputValue = input;
 	},
-
 	onInputKeyDown: function onInputKeyDown(event) {
-		var _props3 = this.props;
-		var shouldKeyDownEventCreateNewOption = _props3.shouldKeyDownEventCreateNewOption;
-		var onInputKeyDown = _props3.onInputKeyDown;
+		var _props3 = this.props,
+		    shouldKeyDownEventCreateNewOption = _props3.shouldKeyDownEventCreateNewOption,
+		    onInputKeyDown = _props3.onInputKeyDown;
 
 		var focusedOption = this.select.getFocusedOption();
 
@@ -508,7 +498,6 @@ var Creatable = _react2['default'].createClass({
 			onInputKeyDown(event);
 		}
 	},
-
 	onOptionSelect: function onOptionSelect(option, event) {
 		if (option === this._createPlaceholderOption) {
 			this.createNewOption();
@@ -516,17 +505,15 @@ var Creatable = _react2['default'].createClass({
 			this.select.selectValue(option);
 		}
 	},
-
 	render: function render() {
 		var _this = this;
 
-		var _props4 = this.props;
-		var _props4$children = _props4.children;
-		var children = _props4$children === undefined ? defaultChildren : _props4$children;
-		var newOptionCreator = _props4.newOptionCreator;
-		var shouldKeyDownEventCreateNewOption = _props4.shouldKeyDownEventCreateNewOption;
-
-		var restProps = _objectWithoutProperties(_props4, ['children', 'newOptionCreator', 'shouldKeyDownEventCreateNewOption']);
+		var _props4 = this.props,
+		    _props4$children = _props4.children,
+		    children = _props4$children === undefined ? defaultChildren : _props4$children,
+		    newOptionCreator = _props4.newOptionCreator,
+		    shouldKeyDownEventCreateNewOption = _props4.shouldKeyDownEventCreateNewOption,
+		    restProps = _objectWithoutProperties(_props4, ['children', 'newOptionCreator', 'shouldKeyDownEventCreateNewOption']);
 
 		var props = _extends({}, restProps, {
 			allowCreate: true,
@@ -534,13 +521,13 @@ var Creatable = _react2['default'].createClass({
 			menuRenderer: this.menuRenderer,
 			onInputChange: this.onInputChange,
 			onInputKeyDown: this.onInputKeyDown,
-			ref: function ref(_ref) {
-				_this.select = _ref;
+			ref: function ref(_ref2) {
+				_this.select = _ref2;
 
 				// These values may be needed in between Select mounts (when this.select is null)
-				if (_ref) {
-					_this.labelKey = _ref.props.labelKey;
-					_this.valueKey = _ref.props.valueKey;
+				if (_ref2) {
+					_this.labelKey = _ref2.props.labelKey;
+					_this.valueKey = _ref2.props.valueKey;
 				}
 			}
 		});
@@ -550,14 +537,14 @@ var Creatable = _react2['default'].createClass({
 });
 
 function defaultChildren(props) {
-	return _react2['default'].createElement(_Select2['default'], props);
+	return _react2.default.createElement(_Select2.default, props);
 };
 
 function isOptionUnique(_ref3) {
-	var option = _ref3.option;
-	var options = _ref3.options;
-	var labelKey = _ref3.labelKey;
-	var valueKey = _ref3.valueKey;
+	var option = _ref3.option,
+	    options = _ref3.options,
+	    labelKey = _ref3.labelKey,
+	    valueKey = _ref3.valueKey;
 
 	return options.filter(function (existingOption) {
 		return existingOption[labelKey] === option[labelKey] || existingOption[valueKey] === option[valueKey];
@@ -571,9 +558,9 @@ function isValidNewOption(_ref4) {
 };
 
 function newOptionCreator(_ref5) {
-	var label = _ref5.label;
-	var labelKey = _ref5.labelKey;
-	var valueKey = _ref5.valueKey;
+	var label = _ref5.label,
+	    labelKey = _ref5.labelKey,
+	    valueKey = _ref5.valueKey;
 
 	var option = {};
 	option[valueKey] = label;
@@ -607,7 +594,7 @@ module.exports = Creatable;
 (function (global){
 'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
 
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
@@ -617,22 +604,10 @@ var _classnames = (typeof window !== "undefined" ? window['classNames'] : typeof
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var Option = _react2['default'].createClass({
-	displayName: 'Option',
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	propTypes: {
-		children: _react2['default'].PropTypes.node,
-		className: _react2['default'].PropTypes.string, // className (based on mouse position)
-		instancePrefix: _react2['default'].PropTypes.string.isRequired, // unique prefix for the ids (used for aria)
-		isDisabled: _react2['default'].PropTypes.bool, // the option is disabled
-		isFocused: _react2['default'].PropTypes.bool, // the option is focused
-		isSelected: _react2['default'].PropTypes.bool, // the option is selected
-		onFocus: _react2['default'].PropTypes.func, // method to handle mouseEnter on option element
-		onSelect: _react2['default'].PropTypes.func, // method to handle click on option element
-		onUnfocus: _react2['default'].PropTypes.func, // method to handle mouseLeave on option element
-		option: _react2['default'].PropTypes.object.isRequired, // object that is base for that option
-		optionIndex: _react2['default'].PropTypes.number },
-	// index of the option, used to generate unique ids for aria
+var Option = _react2.default.createClass({
+	displayName: 'Option',
 	blockEvent: function blockEvent(event) {
 		event.preventDefault();
 		event.stopPropagation();
@@ -645,21 +620,17 @@ var Option = _react2['default'].createClass({
 			window.location.href = event.target.href;
 		}
 	},
-
 	handleMouseDown: function handleMouseDown(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		this.props.onSelect(this.props.option, event);
 	},
-
 	handleMouseEnter: function handleMouseEnter(event) {
 		this.onFocus(event);
 	},
-
 	handleMouseMove: function handleMouseMove(event) {
 		this.onFocus(event);
 	},
-
 	handleTouchEnd: function handleTouchEnd(event) {
 		// Check if the view is being dragged, In this case
 		// we don't want to fire the click event (because the user only wants to scroll)
@@ -667,51 +638,44 @@ var Option = _react2['default'].createClass({
 
 		this.handleMouseDown(event);
 	},
-
 	handleTouchMove: function handleTouchMove(event) {
 		// Set a flag that the view is being dragged
 		this.dragging = true;
 	},
-
 	handleTouchStart: function handleTouchStart(event) {
 		// Set a flag that the view is not being dragged
 		this.dragging = false;
 	},
-
 	onFocus: function onFocus(event) {
 		if (!this.props.isFocused) {
 			this.props.onFocus(this.props.option, event);
 		}
 	},
 	render: function render() {
-		var _props = this.props;
-		var option = _props.option;
-		var instancePrefix = _props.instancePrefix;
-		var optionIndex = _props.optionIndex;
+		var _props = this.props,
+		    option = _props.option,
+		    instancePrefix = _props.instancePrefix,
+		    optionIndex = _props.optionIndex;
 
-		var className = (0, _classnames2['default'])(this.props.className, option.className);
+		var className = (0, _classnames2.default)(this.props.className, option.className);
 
-		return option.disabled ? _react2['default'].createElement(
-			'div',
-			{ className: className,
-				onMouseDown: this.blockEvent,
-				onClick: this.blockEvent },
-			this.props.children
-		) : _react2['default'].createElement(
-			'div',
-			{ className: className,
-				style: option.style,
-				role: 'option',
-				onMouseDown: this.handleMouseDown,
-				onMouseEnter: this.handleMouseEnter,
-				onMouseMove: this.handleMouseMove,
-				onTouchStart: this.handleTouchStart,
-				onTouchMove: this.handleTouchMove,
-				onTouchEnd: this.handleTouchEnd,
-				id: instancePrefix + '-option-' + optionIndex,
-				title: option.title },
-			this.props.children
-		);
+		return option.disabled ? _jsx('div', {
+			className: className,
+			onMouseDown: this.blockEvent,
+			onClick: this.blockEvent
+		}, void 0, this.props.children) : _jsx('div', {
+			className: className,
+			style: option.style,
+			role: 'option',
+			onMouseDown: this.handleMouseDown,
+			onMouseEnter: this.handleMouseEnter,
+			onMouseMove: this.handleMouseMove,
+			onTouchStart: this.handleTouchStart,
+			onTouchMove: this.handleTouchMove,
+			onTouchEnd: this.handleTouchEnd,
+			id: instancePrefix + '-option-' + optionIndex,
+			title: option.title
+		}, void 0, this.props.children);
 	}
 });
 
@@ -720,25 +684,21 @@ module.exports = Option;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],5:[function(require,module,exports){
 (function (global){
-/*!
-  Copyright (c) 2016 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/react-select
-*/
-
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /*!
+                                                                                                                                                                                                                                                                                Copyright (c) 2016 Jed Watson.
+                                                                                                                                                                                                                                                                                Licensed under the MIT License (MIT), see
+                                                                                                                                                                                                                                                                                http://jedwatson.github.io/react-select
+                                                                                                                                                                                                                                                                              */
 
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
@@ -756,17 +716,17 @@ var _classnames = (typeof window !== "undefined" ? window['classNames'] : typeof
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _utilsDefaultArrowRenderer = require('./utils/defaultArrowRenderer');
+var _defaultArrowRenderer = require('./utils/defaultArrowRenderer');
 
-var _utilsDefaultArrowRenderer2 = _interopRequireDefault(_utilsDefaultArrowRenderer);
+var _defaultArrowRenderer2 = _interopRequireDefault(_defaultArrowRenderer);
 
-var _utilsDefaultFilterOptions = require('./utils/defaultFilterOptions');
+var _defaultFilterOptions = require('./utils/defaultFilterOptions');
 
-var _utilsDefaultFilterOptions2 = _interopRequireDefault(_utilsDefaultFilterOptions);
+var _defaultFilterOptions2 = _interopRequireDefault(_defaultFilterOptions);
 
-var _utilsDefaultMenuRenderer = require('./utils/defaultMenuRenderer');
+var _defaultMenuRenderer = require('./utils/defaultMenuRenderer');
 
-var _utilsDefaultMenuRenderer2 = _interopRequireDefault(_utilsDefaultMenuRenderer);
+var _defaultMenuRenderer2 = _interopRequireDefault(_defaultMenuRenderer);
 
 var _Async = require('./Async');
 
@@ -788,8 +748,14 @@ var _Value = require('./Value');
 
 var _Value2 = _interopRequireDefault(_Value);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function stringifyValue(value) {
-	var valueType = typeof value;
+	var valueType = typeof value === 'undefined' ? 'undefined' : _typeof(value);
 	if (valueType === 'string') {
 		return value;
 	} else if (valueType === 'object') {
@@ -801,100 +767,42 @@ function stringifyValue(value) {
 	}
 }
 
-var stringOrNode = _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.string, _react2['default'].PropTypes.node]);
+var stringOrNode = _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.node]);
 
 var instanceId = 1;
 
-var Select = _react2['default'].createClass({
+var _ref = _jsx('span', {
+	className: 'Select-loading-zone',
+	'aria-hidden': 'true'
+}, void 0, _jsx('span', {
+	className: 'Select-loading'
+}));
+
+var _ref2 = _jsx('span', {
+	className: 'Select-aria-only'
+}, void 0, '\xA0');
+
+var Select = _react2.default.createClass({
 
 	displayName: 'Select',
 
-	propTypes: {
-		addLabelText: _react2['default'].PropTypes.string, // placeholder displayed when you want to add a label on a multi-value input
-		'aria-label': _react2['default'].PropTypes.string, // Aria label (for assistive tech)
-		'aria-labelledby': _react2['default'].PropTypes.string, // HTML ID of an element that should be used as the label (for assistive tech)
-		arrowRenderer: _react2['default'].PropTypes.func, // Create drop-down caret element
-		autoBlur: _react2['default'].PropTypes.bool, // automatically blur the component when an option is selected
-		autofocus: _react2['default'].PropTypes.bool, // autofocus the component on mount
-		autosize: _react2['default'].PropTypes.bool, // whether to enable autosizing or not
-		backspaceRemoves: _react2['default'].PropTypes.bool, // whether backspace removes an item if there is no text input
-		backspaceToRemoveMessage: _react2['default'].PropTypes.string, // Message to use for screenreaders to press backspace to remove the current item - {label} is replaced with the item label
-		className: _react2['default'].PropTypes.string, // className for the outer element
-		clearAllText: stringOrNode, // title for the "clear" control when multi: true
-		clearValueText: stringOrNode, // title for the "clear" control
-		clearable: _react2['default'].PropTypes.bool, // should it be possible to reset value
-		delimiter: _react2['default'].PropTypes.string, // delimiter to use to join multiple values for the hidden field value
-		disabled: _react2['default'].PropTypes.bool, // whether the Select is disabled or not
-		escapeClearsValue: _react2['default'].PropTypes.bool, // whether escape clears the value when the menu is closed
-		filterOption: _react2['default'].PropTypes.func, // method to filter a single option (option, filterString)
-		filterOptions: _react2['default'].PropTypes.any, // boolean to enable default filtering or function to filter the options array ([options], filterString, [values])
-		ignoreAccents: _react2['default'].PropTypes.bool, // whether to strip diacritics when filtering
-		ignoreCase: _react2['default'].PropTypes.bool, // whether to perform case-insensitive filtering
-		inputProps: _react2['default'].PropTypes.object, // custom attributes for the Input
-		inputRenderer: _react2['default'].PropTypes.func, // returns a custom input component
-		instanceId: _react2['default'].PropTypes.string, // set the components instanceId
-		isLoading: _react2['default'].PropTypes.bool, // whether the Select is loading externally or not (such as options being loaded)
-		joinValues: _react2['default'].PropTypes.bool, // joins multiple values into a single form field with the delimiter (legacy mode)
-		labelKey: _react2['default'].PropTypes.string, // path of the label value in option objects
-		matchPos: _react2['default'].PropTypes.string, // (any|start) match the start or entire string when filtering
-		matchProp: _react2['default'].PropTypes.string, // (any|label|value) which option property to filter on
-		menuBuffer: _react2['default'].PropTypes.number, // optional buffer (in px) between the bottom of the viewport and the bottom of the menu
-		menuContainerStyle: _react2['default'].PropTypes.object, // optional style to apply to the menu container
-		menuRenderer: _react2['default'].PropTypes.func, // renders a custom menu with options
-		menuStyle: _react2['default'].PropTypes.object, // optional style to apply to the menu
-		multi: _react2['default'].PropTypes.bool, // multi-value input
-		name: _react2['default'].PropTypes.string, // generates a hidden <input /> tag with this field name for html forms
-		noResultsText: stringOrNode, // placeholder displayed when there are no matching search results
-		onBlur: _react2['default'].PropTypes.func, // onBlur handler: function (event) {}
-		onBlurResetsInput: _react2['default'].PropTypes.bool, // whether input is cleared on blur
-		onChange: _react2['default'].PropTypes.func, // onChange handler: function (newValue) {}
-		onClose: _react2['default'].PropTypes.func, // fires when the menu is closed
-		onCloseResetsInput: _react2['default'].PropTypes.bool, // whether input is cleared when menu is closed through the arrow
-		onFocus: _react2['default'].PropTypes.func, // onFocus handler: function (event) {}
-		onInputChange: _react2['default'].PropTypes.func, // onInputChange handler: function (inputValue) {}
-		onInputKeyDown: _react2['default'].PropTypes.func, // input keyDown handler: function (event) {}
-		onMenuScrollToBottom: _react2['default'].PropTypes.func, // fires when the menu is scrolled to the bottom; can be used to paginate options
-		onOpen: _react2['default'].PropTypes.func, // fires when the menu is opened
-		onValueClick: _react2['default'].PropTypes.func, // onClick handler for value labels: function (value, event) {}
-		openAfterFocus: _react2['default'].PropTypes.bool, // boolean to enable opening dropdown when focused
-		openOnFocus: _react2['default'].PropTypes.bool, // always open options menu on focus
-		optionClassName: _react2['default'].PropTypes.string, // additional class(es) to apply to the <Option /> elements
-		optionComponent: _react2['default'].PropTypes.func, // option component to render in dropdown
-		optionRenderer: _react2['default'].PropTypes.func, // optionRenderer: function (option) {}
-		options: _react2['default'].PropTypes.array, // array of options
-		pageSize: _react2['default'].PropTypes.number, // number of entries to page when using page up/down keys
-		placeholder: stringOrNode, // field placeholder, displayed when there's no value
-		required: _react2['default'].PropTypes.bool, // applies HTML5 required attribute when needed
-		resetValue: _react2['default'].PropTypes.any, // value to use when you clear the control
-		scrollMenuIntoView: _react2['default'].PropTypes.bool, // boolean to enable the viewport to shift so that the full menu fully visible when engaged
-		searchable: _react2['default'].PropTypes.bool, // whether to enable searching feature or not
-		simpleValue: _react2['default'].PropTypes.bool, // pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false
-		style: _react2['default'].PropTypes.object, // optional style to apply to the control
-		tabIndex: _react2['default'].PropTypes.string, // optional tab index of the control
-		tabSelectsValue: _react2['default'].PropTypes.bool, // whether to treat tabbing out while focused to be value selection
-		value: _react2['default'].PropTypes.any, // initial field value
-		valueComponent: _react2['default'].PropTypes.func, // value component to render
-		valueKey: _react2['default'].PropTypes.string, // path of the label value in option objects
-		valueRenderer: _react2['default'].PropTypes.func, // valueRenderer: function (option) {}
-		wrapperStyle: _react2['default'].PropTypes.object },
-
-	// optional style to apply to the component wrapper
-	statics: { Async: _Async2['default'], AsyncCreatable: _AsyncCreatable2['default'], Creatable: _Creatable2['default'] },
+	statics: { Async: _Async2.default, AsyncCreatable: _AsyncCreatable2.default, Creatable: _Creatable2.default },
 
 	getDefaultProps: function getDefaultProps() {
 		return {
 			addLabelText: 'Add "{label}"?',
-			arrowRenderer: _utilsDefaultArrowRenderer2['default'],
+			arrowRenderer: _defaultArrowRenderer2.default,
 			autosize: true,
 			backspaceRemoves: true,
 			backspaceToRemoveMessage: 'Press backspace to remove {label}',
 			clearable: true,
 			clearAllText: 'Clear all',
 			clearValueText: 'Clear value',
+			deleteRemoves: true,
 			delimiter: ',',
 			disabled: false,
 			escapeClearsValue: true,
-			filterOptions: _utilsDefaultFilterOptions2['default'],
+			filterOptions: _defaultFilterOptions2.default,
 			ignoreAccents: true,
 			ignoreCase: true,
 			inputProps: {},
@@ -904,13 +812,13 @@ var Select = _react2['default'].createClass({
 			matchPos: 'any',
 			matchProp: 'any',
 			menuBuffer: 0,
-			menuRenderer: _utilsDefaultMenuRenderer2['default'],
+			menuRenderer: _defaultMenuRenderer2.default,
 			multi: false,
 			noResultsText: 'No results found',
 			onBlurResetsInput: true,
 			onCloseResetsInput: true,
 			openAfterFocus: false,
-			optionComponent: _Option2['default'],
+			optionComponent: _Option2.default,
 			pageSize: 5,
 			placeholder: 'Select...',
 			required: false,
@@ -918,11 +826,11 @@ var Select = _react2['default'].createClass({
 			searchable: true,
 			simpleValue: false,
 			tabSelectsValue: true,
-			valueComponent: _Value2['default'],
-			valueKey: 'value'
+			valueComponent: _Value2.default,
+			valueKey: 'value',
+			preserveInputValue: false
 		};
 	},
-
 	getInitialState: function getInitialState() {
 		return {
 			inputValue: '',
@@ -932,7 +840,6 @@ var Select = _react2['default'].createClass({
 			required: false
 		};
 	},
-
 	componentWillMount: function componentWillMount() {
 		this._instancePrefix = 'react-select-' + (this.props.instanceId || ++instanceId) + '-';
 		var valueArray = this.getValueArray(this.props.value);
@@ -943,13 +850,11 @@ var Select = _react2['default'].createClass({
 			});
 		}
 	},
-
 	componentDidMount: function componentDidMount() {
 		if (this.props.autofocus) {
 			this.focus();
 		}
 	},
-
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		var valueArray = this.getValueArray(nextProps.value, nextProps);
 
@@ -959,7 +864,6 @@ var Select = _react2['default'].createClass({
 			});
 		}
 	},
-
 	componentWillUpdate: function componentWillUpdate(nextProps, nextState) {
 		if (nextState.isOpen !== this.state.isOpen) {
 			this.toggleTouchOutsideEvent(nextState.isOpen);
@@ -967,12 +871,11 @@ var Select = _react2['default'].createClass({
 			handler && handler();
 		}
 	},
-
 	componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
 		// focus to the selected option
 		if (this.menu && this.focused && this.state.isOpen && !this.hasScrolledToOption) {
-			var focusedOptionNode = _reactDom2['default'].findDOMNode(this.focused);
-			var menuNode = _reactDom2['default'].findDOMNode(this.menu);
+			var focusedOptionNode = _reactDom2.default.findDOMNode(this.focused);
+			var menuNode = _reactDom2.default.findDOMNode(this.menu);
 			menuNode.scrollTop = focusedOptionNode.offsetTop;
 			this.hasScrolledToOption = true;
 		} else if (!this.state.isOpen) {
@@ -981,8 +884,8 @@ var Select = _react2['default'].createClass({
 
 		if (this._scrollToFocusedOptionOnUpdate && this.focused && this.menu) {
 			this._scrollToFocusedOptionOnUpdate = false;
-			var focusedDOM = _reactDom2['default'].findDOMNode(this.focused);
-			var menuDOM = _reactDom2['default'].findDOMNode(this.menu);
+			var focusedDOM = _reactDom2.default.findDOMNode(this.focused);
+			var menuDOM = _reactDom2.default.findDOMNode(this.menu);
 			var focusedRect = focusedDOM.getBoundingClientRect();
 			var menuRect = menuDOM.getBoundingClientRect();
 			if (focusedRect.bottom > menuRect.bottom || focusedRect.top < menuRect.top) {
@@ -1000,7 +903,6 @@ var Select = _react2['default'].createClass({
 			this.closeMenu();
 		}
 	},
-
 	componentWillUnmount: function componentWillUnmount() {
 		if (!document.removeEventListener && document.detachEvent) {
 			document.detachEvent('ontouchstart', this.handleTouchOutside);
@@ -1008,7 +910,6 @@ var Select = _react2['default'].createClass({
 			document.removeEventListener('touchstart', this.handleTouchOutside);
 		}
 	},
-
 	toggleTouchOutsideEvent: function toggleTouchOutsideEvent(enabled) {
 		if (enabled) {
 			if (!document.addEventListener && document.attachEvent) {
@@ -1024,14 +925,12 @@ var Select = _react2['default'].createClass({
 			}
 		}
 	},
-
 	handleTouchOutside: function handleTouchOutside(event) {
 		// handle touch outside on ios to dismiss menu
 		if (this.wrapper && !this.wrapper.contains(event.target)) {
 			this.closeMenu();
 		}
 	},
-
 	focus: function focus() {
 		if (!this.input) return;
 		this.input.focus();
@@ -1042,22 +941,18 @@ var Select = _react2['default'].createClass({
 			});
 		}
 	},
-
 	blurInput: function blurInput() {
 		if (!this.input) return;
 		this.input.blur();
 	},
-
 	handleTouchMove: function handleTouchMove(event) {
 		// Set a flag that the view is being dragged
 		this.dragging = true;
 	},
-
 	handleTouchStart: function handleTouchStart(event) {
 		// Set a flag that the view is not being dragged
 		this.dragging = false;
 	},
-
 	handleTouchEnd: function handleTouchEnd(event) {
 		// Check if the view is being dragged, In this case
 		// we don't want to fire the click event (because the user only wants to scroll)
@@ -1066,7 +961,6 @@ var Select = _react2['default'].createClass({
 		// Fire the mouse events
 		this.handleMouseDown(event);
 	},
-
 	handleTouchEndClearValue: function handleTouchEndClearValue(event) {
 		// Check if the view is being dragged, In this case
 		// we don't want to fire the click event (because the user only wants to scroll)
@@ -1075,7 +969,6 @@ var Select = _react2['default'].createClass({
 		// Clear the value
 		this.clearValue(event);
 	},
-
 	handleMouseDown: function handleMouseDown(event) {
 		// if the event was triggered by a mousedown and not the primary
 		// button, or if the component is disabled, ignore it.
@@ -1125,7 +1018,6 @@ var Select = _react2['default'].createClass({
 			this.focus();
 		}
 	},
-
 	handleMouseDownOnArrow: function handleMouseDownOnArrow(event) {
 		// if the event was triggered by a mousedown and not the primary
 		// button, or if the component is disabled, ignore it.
@@ -1142,7 +1034,6 @@ var Select = _react2['default'].createClass({
 		// close the menu
 		this.closeMenu();
 	},
-
 	handleMouseDownOnMenu: function handleMouseDownOnMenu(event) {
 		// if the event was triggered by a mousedown and not the primary
 		// button, or if the component is disabled, ignore it.
@@ -1155,7 +1046,6 @@ var Select = _react2['default'].createClass({
 		this._openAfterFocus = true;
 		this.focus();
 	},
-
 	closeMenu: function closeMenu() {
 		if (this.props.onCloseResetsInput) {
 			this.setState({
@@ -1172,7 +1062,6 @@ var Select = _react2['default'].createClass({
 		}
 		this.hasScrolledToOption = false;
 	},
-
 	handleInputFocus: function handleInputFocus(event) {
 		if (this.props.disabled) return;
 		var isOpen = this.state.isOpen || this._openAfterFocus || this.props.openOnFocus;
@@ -1185,7 +1074,6 @@ var Select = _react2['default'].createClass({
 		});
 		this._openAfterFocus = false;
 	},
-
 	handleInputBlur: function handleInputBlur(event) {
 		// The check for menu.contains(activeElement) is necessary to prevent IE11's scrollbar from closing the menu in certain contexts.
 		if (this.menu && (this.menu === document.activeElement || this.menu.contains(document.activeElement))) {
@@ -1206,14 +1094,13 @@ var Select = _react2['default'].createClass({
 		}
 		this.setState(onBlurredState);
 	},
-
 	handleInputChange: function handleInputChange(event) {
 		var newInputValue = event.target.value;
 
 		if (this.state.inputValue !== event.target.value && this.props.onInputChange) {
 			var nextState = this.props.onInputChange(newInputValue);
 			// Note: != used deliberately here to catch undefined and null
-			if (nextState != null && typeof nextState !== 'object') {
+			if (nextState != null && (typeof nextState === 'undefined' ? 'undefined' : _typeof(nextState)) !== 'object') {
 				newInputValue = '' + nextState;
 			}
 		}
@@ -1224,7 +1111,6 @@ var Select = _react2['default'].createClass({
 			inputValue: newInputValue
 		});
 	},
-
 	handleKeyDown: function handleKeyDown(event) {
 		if (this.props.disabled) return;
 
@@ -1254,7 +1140,8 @@ var Select = _react2['default'].createClass({
 				// enter
 				if (!this.state.isOpen) return;
 				event.stopPropagation();
-				this.selectFocusedOption();
+				//this.selectFocusedOption();
+				this.selectValue({ value: this.state.inputValue, label: this.state.inputValue });
 				break;
 			case 27:
 				// escape
@@ -1296,17 +1183,22 @@ var Select = _react2['default'].createClass({
 				}
 				this.focusStartOption();
 				break;
+			case 46:
+				// backspace
+				if (!this.state.inputValue && this.props.deleteRemoves) {
+					event.preventDefault();
+					this.popValue();
+				}
+				return;
 			default:
 				return;
 		}
 		event.preventDefault();
 	},
-
 	handleValueClick: function handleValueClick(option, event) {
 		if (!this.props.onValueClick) return;
 		this.props.onValueClick(option, event);
 	},
-
 	handleMenuScroll: function handleMenuScroll(event) {
 		if (!this.props.onMenuScrollToBottom) return;
 		var target = event.target;
@@ -1315,15 +1207,14 @@ var Select = _react2['default'].createClass({
 			this.props.onMenuScrollToBottom();
 		}
 	},
-
 	handleRequired: function handleRequired(value, multi) {
 		if (!value) return true;
 		return multi ? value.length === 0 : Object.keys(value).length === 0;
 	},
-
 	getOptionLabel: function getOptionLabel(op) {
 		return op[this.props.labelKey];
 	},
+
 
 	/**
   * Turns a value into an array from the given options
@@ -1335,7 +1226,7 @@ var Select = _react2['default'].createClass({
 		var _this = this;
 
 		/** support optionally passing in the `nextProps` so `componentWillReceiveProps` updates will function as expected */
-		var props = typeof nextProps === 'object' ? nextProps : this.props;
+		var props = (typeof nextProps === 'undefined' ? 'undefined' : _typeof(nextProps)) === 'object' ? nextProps : this.props;
 		if (props.multi) {
 			if (typeof value === 'string') value = value.split(props.delimiter);
 			if (!Array.isArray(value)) {
@@ -1352,23 +1243,23 @@ var Select = _react2['default'].createClass({
 		return expandedValue ? [expandedValue] : [];
 	},
 
+
 	/**
   * Retrieve a value from the given options and valueKey
   * @param	{String|Number|Array}	value	- the selected value(s)
   * @param	{Object}		props	- the Select component's props (or nextProps)
   */
 	expandValue: function expandValue(value, props) {
-		var valueType = typeof value;
+		var valueType = typeof value === 'undefined' ? 'undefined' : _typeof(value);
 		if (valueType !== 'string' && valueType !== 'number' && valueType !== 'boolean') return value;
-		var options = props.options;
-		var valueKey = props.valueKey;
+		var options = props.options,
+		    valueKey = props.valueKey;
 
 		if (!options) return;
 		for (var i = 0; i < options.length; i++) {
 			if (options[i][valueKey] === value) return options[i];
 		}
 	},
-
 	setValue: function setValue(value) {
 		var _this2 = this;
 
@@ -1387,7 +1278,6 @@ var Select = _react2['default'].createClass({
 		}
 		this.props.onChange(value);
 	},
-
 	selectValue: function selectValue(value) {
 		var _this3 = this;
 
@@ -1395,7 +1285,7 @@ var Select = _react2['default'].createClass({
 		this.hasScrolledToOption = false;
 		if (this.props.multi) {
 			this.setState({
-				inputValue: '',
+				inputValue: this.props.preserveInputValue ? this.state.inputValue : '',
 				focusedIndex: null
 			}, function () {
 				_this3.addValue(value);
@@ -1403,26 +1293,23 @@ var Select = _react2['default'].createClass({
 		} else {
 			this.setState({
 				isOpen: false,
-				inputValue: '',
+				inputValue: this.props.preserveInputValue ? value.label : '',
 				isPseudoFocused: this.state.isFocused
 			}, function () {
 				_this3.setValue(value);
 			});
 		}
 	},
-
 	addValue: function addValue(value) {
 		var valueArray = this.getValueArray(this.props.value);
 		this.setValue(valueArray.concat(value));
 	},
-
 	popValue: function popValue() {
 		var valueArray = this.getValueArray(this.props.value);
 		if (!valueArray.length) return;
 		if (valueArray[valueArray.length - 1].clearableValue === false) return;
 		this.setValue(valueArray.slice(0, valueArray.length - 1));
 	},
-
 	removeValue: function removeValue(value) {
 		var valueArray = this.getValueArray(this.props.value);
 		this.setValue(valueArray.filter(function (i) {
@@ -1430,7 +1317,6 @@ var Select = _react2['default'].createClass({
 		}));
 		this.focus();
 	},
-
 	clearValue: function clearValue(event) {
 		// if the event was triggered by a mousedown and not the primary
 		// button, ignore it.
@@ -1445,7 +1331,6 @@ var Select = _react2['default'].createClass({
 			inputValue: ''
 		}, this.focus);
 	},
-
 	getResetValue: function getResetValue() {
 		if (this.props.resetValue !== undefined) {
 			return this.props.resetValue;
@@ -1455,37 +1340,29 @@ var Select = _react2['default'].createClass({
 			return null;
 		}
 	},
-
 	focusOption: function focusOption(option) {
 		this.setState({
 			focusedOption: option
 		});
 	},
-
 	focusNextOption: function focusNextOption() {
 		this.focusAdjacentOption('next');
 	},
-
 	focusPreviousOption: function focusPreviousOption() {
 		this.focusAdjacentOption('previous');
 	},
-
 	focusPageUpOption: function focusPageUpOption() {
 		this.focusAdjacentOption('page_up');
 	},
-
 	focusPageDownOption: function focusPageDownOption() {
 		this.focusAdjacentOption('page_down');
 	},
-
 	focusStartOption: function focusStartOption() {
 		this.focusAdjacentOption('start');
 	},
-
 	focusEndOption: function focusEndOption() {
 		this.focusAdjacentOption('end');
 	},
-
 	focusAdjacentOption: function focusAdjacentOption(dir) {
 		var options = this._visibleOptions.map(function (option, index) {
 			return { option: option, index: index };
@@ -1496,7 +1373,7 @@ var Select = _react2['default'].createClass({
 		if (!this.state.isOpen) {
 			this.setState({
 				isOpen: true,
-				inputValue: '',
+				inputValue: this.props.preserveInputValue ? this.state.inputValue : '',
 				focusedOption: this._focusedOption || options[dir === 'next' ? 0 : options.length - 1].option
 			});
 			return;
@@ -1546,182 +1423,152 @@ var Select = _react2['default'].createClass({
 			focusedOption: options[focusedIndex].option
 		});
 	},
-
 	getFocusedOption: function getFocusedOption() {
 		return this._focusedOption;
 	},
-
 	getInputValue: function getInputValue() {
 		return this.state.inputValue;
 	},
-
 	selectFocusedOption: function selectFocusedOption() {
 		if (this._focusedOption) {
 			return this.selectValue(this._focusedOption);
 		}
 	},
-
 	renderLoading: function renderLoading() {
 		if (!this.props.isLoading) return;
-		return _react2['default'].createElement(
-			'span',
-			{ className: 'Select-loading-zone', 'aria-hidden': 'true' },
-			_react2['default'].createElement('span', { className: 'Select-loading' })
-		);
+		return _ref;
 	},
-
 	renderValue: function renderValue(valueArray, isOpen) {
 		var _this4 = this;
 
 		var renderLabel = this.props.valueRenderer || this.getOptionLabel;
 		var ValueComponent = this.props.valueComponent;
 		if (!valueArray.length) {
-			return !this.state.inputValue ? _react2['default'].createElement(
-				'div',
-				{ className: 'Select-placeholder' },
-				this.props.placeholder
-			) : null;
+			return !this.state.inputValue ? _jsx('div', {
+				className: 'Select-placeholder'
+			}, void 0, this.props.placeholder) : null;
 		}
 		var onClick = this.props.onValueClick ? this.handleValueClick : null;
 		if (this.props.multi) {
 			return valueArray.map(function (value, i) {
-				return _react2['default'].createElement(
-					ValueComponent,
-					{
-						id: _this4._instancePrefix + '-value-' + i,
-						instancePrefix: _this4._instancePrefix,
-						disabled: _this4.props.disabled || value.clearableValue === false,
-						key: 'value-' + i + '-' + value[_this4.props.valueKey],
-						onClick: onClick,
-						onRemove: _this4.removeValue,
-						value: value
-					},
-					renderLabel(value, i),
-					_react2['default'].createElement(
-						'span',
-						{ className: 'Select-aria-only' },
-						' '
-					)
-				);
+				return _jsx(ValueComponent, {
+					id: _this4._instancePrefix + '-value-' + i,
+					instancePrefix: _this4._instancePrefix,
+					disabled: _this4.props.disabled || value.clearableValue === false,
+					onClick: onClick,
+					onRemove: _this4.removeValue,
+					value: value
+				}, 'value-' + i + '-' + value[_this4.props.valueKey], renderLabel(value, i), _ref2);
 			});
 		} else if (!this.state.inputValue) {
 			if (isOpen) onClick = null;
-			return _react2['default'].createElement(
-				ValueComponent,
-				{
-					id: this._instancePrefix + '-value-item',
-					disabled: this.props.disabled,
-					instancePrefix: this._instancePrefix,
-					onClick: onClick,
-					value: valueArray[0]
-				},
-				renderLabel(valueArray[0])
-			);
+			/*
+   return (
+   	<ValueComponent
+   		id={this._instancePrefix + '-value-item'}
+   		disabled={this.props.disabled}
+   		instancePrefix={this._instancePrefix}
+   		onClick={onClick}
+   		value={valueArray[0]}
+   	>
+   		{renderLabel(valueArray[0])}
+   	</ValueComponent>
+   );
+   */
 		}
 	},
-
 	renderInput: function renderInput(valueArray, focusedOptionIndex) {
-		var _this5 = this;
+		var _classNames,
+		    _this5 = this;
+
+		var className = (0, _classnames2.default)('Select-input', this.props.inputProps.className);
+		var isOpen = !!this.state.isOpen;
+
+		var ariaOwns = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, this._instancePrefix + '-list', isOpen), _defineProperty(_classNames, this._instancePrefix + '-backspace-remove-message', this.props.multi && !this.props.disabled && this.state.isFocused && !this.state.inputValue), _classNames));
+
+		// TODO: Check how this project includes Object.assign()
+		var inputProps = Object.assign({}, this.props.inputProps, {
+			role: 'combobox',
+			'aria-expanded': '' + isOpen,
+			'aria-owns': ariaOwns,
+			'aria-haspopup': '' + isOpen,
+			'aria-activedescendant': isOpen ? this._instancePrefix + '-option-' + focusedOptionIndex : this._instancePrefix + '-value',
+			'aria-labelledby': this.props['aria-labelledby'],
+			'aria-label': this.props['aria-label'],
+			className: className,
+			tabIndex: this.props.tabIndex,
+			onBlur: this.handleInputBlur,
+			onChange: this.handleInputChange,
+			onFocus: this.handleInputFocus,
+			ref: function ref(_ref3) {
+				return _this5.input = _ref3;
+			},
+			required: this.state.required,
+			value: this.state.inputValue
+		});
 
 		if (this.props.inputRenderer) {
-			return this.props.inputRenderer();
-		} else {
-			var _classNames;
-
-			var className = (0, _classnames2['default'])('Select-input', this.props.inputProps.className);
-			var isOpen = !!this.state.isOpen;
-
-			var ariaOwns = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, this._instancePrefix + '-list', isOpen), _defineProperty(_classNames, this._instancePrefix + '-backspace-remove-message', this.props.multi && !this.props.disabled && this.state.isFocused && !this.state.inputValue), _classNames));
-
-			// TODO: Check how this project includes Object.assign()
-			var inputProps = _extends({}, this.props.inputProps, {
-				role: 'combobox',
-				'aria-expanded': '' + isOpen,
-				'aria-owns': ariaOwns,
-				'aria-haspopup': '' + isOpen,
-				'aria-activedescendant': isOpen ? this._instancePrefix + '-option-' + focusedOptionIndex : this._instancePrefix + '-value',
-				'aria-labelledby': this.props['aria-labelledby'],
-				'aria-label': this.props['aria-label'],
-				className: className,
-				tabIndex: this.props.tabIndex,
-				onBlur: this.handleInputBlur,
-				onChange: this.handleInputChange,
-				onFocus: this.handleInputFocus,
-				ref: function ref(_ref) {
-					return _this5.input = _ref;
-				},
-				required: this.state.required,
-				value: this.state.inputValue
-			});
-
-			if (this.props.disabled || !this.props.searchable) {
-				var _props$inputProps = this.props.inputProps;
-				var inputClassName = _props$inputProps.inputClassName;
-
-				var divProps = _objectWithoutProperties(_props$inputProps, ['inputClassName']);
-
-				return _react2['default'].createElement('div', _extends({}, divProps, {
-					role: 'combobox',
-					'aria-expanded': isOpen,
-					'aria-owns': isOpen ? this._instancePrefix + '-list' : this._instancePrefix + '-value',
-					'aria-activedescendant': isOpen ? this._instancePrefix + '-option-' + focusedOptionIndex : this._instancePrefix + '-value',
-					className: className,
-					tabIndex: this.props.tabIndex || 0,
-					onBlur: this.handleInputBlur,
-					onFocus: this.handleInputFocus,
-					ref: function (ref) {
-						return _this5.input = ref;
-					},
-					'aria-readonly': '' + !!this.props.disabled,
-					style: { border: 0, width: 1, display: 'inline-block' } }));
-			}
-
-			if (this.props.autosize) {
-				return _react2['default'].createElement(_reactInputAutosize2['default'], _extends({}, inputProps, { minWidth: '5' }));
-			}
-			return _react2['default'].createElement(
-				'div',
-				{ className: className },
-				_react2['default'].createElement('input', inputProps)
-			);
+			return this.props.inputRenderer(inputProps);
 		}
-	},
 
+		if (this.props.disabled || !this.props.searchable) {
+			var _props$inputProps = this.props.inputProps,
+			    inputClassName = _props$inputProps.inputClassName,
+			    divProps = _objectWithoutProperties(_props$inputProps, ['inputClassName']);
+
+			return _react2.default.createElement('div', _extends({}, divProps, {
+				role: 'combobox',
+				'aria-expanded': isOpen,
+				'aria-owns': isOpen ? this._instancePrefix + '-list' : this._instancePrefix + '-value',
+				'aria-activedescendant': isOpen ? this._instancePrefix + '-option-' + focusedOptionIndex : this._instancePrefix + '-value',
+				className: className,
+				tabIndex: this.props.tabIndex || 0,
+				onBlur: this.handleInputBlur,
+				onFocus: this.handleInputFocus,
+				ref: function ref(_ref4) {
+					return _this5.input = _ref4;
+				},
+				'aria-readonly': '' + !!this.props.disabled,
+				style: { border: 0, width: 1, display: 'inline-block' } }));
+		}
+
+		if (this.props.autosize) {
+			return _react2.default.createElement(_reactInputAutosize2.default, _extends({}, inputProps, { minWidth: '5' }));
+		}
+		return _jsx('div', {
+			className: className
+		}, void 0, _react2.default.createElement('input', inputProps));
+	},
 	renderClear: function renderClear() {
 		if (!this.props.clearable || !this.props.value || this.props.value === 0 || this.props.multi && !this.props.value.length || this.props.disabled || this.props.isLoading) return;
-		return _react2['default'].createElement(
-			'span',
-			{ className: 'Select-clear-zone', title: this.props.multi ? this.props.clearAllText : this.props.clearValueText,
-				'aria-label': this.props.multi ? this.props.clearAllText : this.props.clearValueText,
-				onMouseDown: this.clearValue,
-				onTouchStart: this.handleTouchStart,
-				onTouchMove: this.handleTouchMove,
-				onTouchEnd: this.handleTouchEndClearValue
-			},
-			_react2['default'].createElement('span', { className: 'Select-clear', dangerouslySetInnerHTML: { __html: '&times;' } })
-		);
+		return _jsx('span', {
+			className: 'Select-clear-zone',
+			title: this.props.multi ? this.props.clearAllText : this.props.clearValueText,
+			'aria-label': this.props.multi ? this.props.clearAllText : this.props.clearValueText,
+			onMouseDown: this.clearValue,
+			onTouchStart: this.handleTouchStart,
+			onTouchMove: this.handleTouchMove,
+			onTouchEnd: this.handleTouchEndClearValue
+		}, void 0, _jsx('span', {
+			className: 'Select-clear',
+			dangerouslySetInnerHTML: { __html: '&times;' }
+		}));
 	},
-
 	renderArrow: function renderArrow() {
 		var onMouseDown = this.handleMouseDownOnArrow;
 		var arrow = this.props.arrowRenderer({ onMouseDown: onMouseDown });
 
-		return _react2['default'].createElement(
-			'span',
-			{
-				className: 'Select-arrow-zone',
-				onMouseDown: onMouseDown
-			},
-			arrow
-		);
+		return _jsx('span', {
+			className: 'Select-arrow-zone',
+			onMouseDown: onMouseDown
+		}, void 0, arrow);
 	},
-
 	filterOptions: function filterOptions(excludeOptions) {
 		var filterValue = this.state.inputValue;
 		var options = this.props.options || [];
 		if (this.props.filterOptions) {
 			// Maintain backwards compatibility with boolean attribute
-			var filterOptions = typeof this.props.filterOptions === 'function' ? this.props.filterOptions : _utilsDefaultFilterOptions2['default'];
+			var filterOptions = typeof this.props.filterOptions === 'function' ? this.props.filterOptions : _defaultFilterOptions2.default;
 
 			return filterOptions(options, filterValue, excludeOptions, {
 				filterOption: this.props.filterOption,
@@ -1736,13 +1583,11 @@ var Select = _react2['default'].createClass({
 			return options;
 		}
 	},
-
 	onOptionRef: function onOptionRef(ref, isFocused) {
 		if (isFocused) {
 			this.focused = ref;
 		}
 	},
-
 	renderMenu: function renderMenu(options, valueArray, focusedOption) {
 		if (options && options.length) {
 			return this.props.menuRenderer({
@@ -1762,16 +1607,13 @@ var Select = _react2['default'].createClass({
 				onOptionRef: this.onOptionRef
 			});
 		} else if (this.props.noResultsText) {
-			return _react2['default'].createElement(
-				'div',
-				{ className: 'Select-noresults' },
-				this.props.noResultsText
-			);
+			return _jsx('div', {
+				className: 'Select-noresults'
+			}, void 0, this.props.noResultsText);
 		} else {
 			return null;
 		}
 	},
-
 	renderHiddenField: function renderHiddenField(valueArray) {
 		var _this6 = this;
 
@@ -1780,17 +1622,17 @@ var Select = _react2['default'].createClass({
 			var value = valueArray.map(function (i) {
 				return stringifyValue(i[_this6.props.valueKey]);
 			}).join(this.props.delimiter);
-			return _react2['default'].createElement('input', {
+			return _react2.default.createElement('input', {
 				type: 'hidden',
-				ref: function (ref) {
-					return _this6.value = ref;
+				ref: function ref(_ref5) {
+					return _this6.value = _ref5;
 				},
 				name: this.props.name,
 				value: value,
 				disabled: this.props.disabled });
 		}
 		return valueArray.map(function (item, index) {
-			return _react2['default'].createElement('input', { key: 'hidden.' + index,
+			return _react2.default.createElement('input', { key: 'hidden.' + index,
 				type: 'hidden',
 				ref: 'value' + index,
 				name: _this6.props.name,
@@ -1798,7 +1640,6 @@ var Select = _react2['default'].createClass({
 				disabled: _this6.props.disabled });
 		});
 	},
-
 	getFocusableOptionIndex: function getFocusableOptionIndex(selectedOption) {
 		var options = this._visibleOptions;
 		if (!options.length) return null;
@@ -1816,7 +1657,6 @@ var Select = _react2['default'].createClass({
 		}
 		return null;
 	},
-
 	renderOuter: function renderOuter(options, valueArray, focusedOption) {
 		var _this7 = this;
 
@@ -1825,15 +1665,15 @@ var Select = _react2['default'].createClass({
 			return null;
 		}
 
-		return _react2['default'].createElement(
+		return _react2.default.createElement(
 			'div',
-			{ ref: function (ref) {
-					return _this7.menuContainer = ref;
+			{ ref: function ref(_ref7) {
+					return _this7.menuContainer = _ref7;
 				}, className: 'Select-menu-outer', style: this.props.menuContainerStyle },
-			_react2['default'].createElement(
+			_react2.default.createElement(
 				'div',
-				{ ref: function (ref) {
-						return _this7.menu = ref;
+				{ ref: function ref(_ref6) {
+						return _this7.menu = _ref6;
 					}, role: 'listbox', className: 'Select-menu', id: this._instancePrefix + '-list',
 					style: this.props.menuStyle,
 					onScroll: this.handleMenuScroll,
@@ -1842,7 +1682,6 @@ var Select = _react2['default'].createClass({
 			)
 		);
 	},
-
 	render: function render() {
 		var _this8 = this;
 
@@ -1858,39 +1697,39 @@ var Select = _react2['default'].createClass({
 		} else {
 			focusedOption = this._focusedOption = null;
 		}
-		var className = (0, _classnames2['default'])('Select', this.props.className, {
+		var className = (0, _classnames2.default)('Select', this.props.className, {
 			'Select--multi': this.props.multi,
 			'Select--single': !this.props.multi,
 			'is-disabled': this.props.disabled,
-			'is-focused': this.state.isFocused,
+			'is-focused': false, //this.state.isFocused,
 			'is-loading': this.props.isLoading,
 			'is-open': isOpen,
-			'is-pseudo-focused': this.state.isPseudoFocused,
+			'is-pseudo-focused': false, //this.state.isPseudoFocused,
 			'is-searchable': this.props.searchable,
 			'has-value': valueArray.length
 		});
 
 		var removeMessage = null;
 		if (this.props.multi && !this.props.disabled && valueArray.length && !this.state.inputValue && this.state.isFocused && this.props.backspaceRemoves) {
-			removeMessage = _react2['default'].createElement(
-				'span',
-				{ id: this._instancePrefix + '-backspace-remove-message', className: 'Select-aria-only', 'aria-live': 'assertive' },
-				this.props.backspaceToRemoveMessage.replace('{label}', valueArray[valueArray.length - 1][this.props.labelKey])
-			);
+			removeMessage = _jsx('span', {
+				id: this._instancePrefix + '-backspace-remove-message',
+				className: 'Select-aria-only',
+				'aria-live': 'assertive'
+			}, void 0, this.props.backspaceToRemoveMessage.replace('{label}', valueArray[valueArray.length - 1][this.props.labelKey]));
 		}
 
-		return _react2['default'].createElement(
+		return _react2.default.createElement(
 			'div',
-			{ ref: function (ref) {
-					return _this8.wrapper = ref;
+			{ ref: function ref(_ref9) {
+					return _this8.wrapper = _ref9;
 				},
 				className: className,
 				style: this.props.wrapperStyle },
 			this.renderHiddenField(valueArray),
-			_react2['default'].createElement(
+			_react2.default.createElement(
 				'div',
-				{ ref: function (ref) {
-						return _this8.control = ref;
+				{ ref: function ref(_ref8) {
+						return _this8.control = _ref8;
 					},
 					className: 'Select-control',
 					style: this.props.style,
@@ -1900,12 +1739,10 @@ var Select = _react2['default'].createClass({
 					onTouchStart: this.handleTouchStart,
 					onTouchMove: this.handleTouchMove
 				},
-				_react2['default'].createElement(
-					'span',
-					{ className: 'Select-multi-value-wrapper', id: this._instancePrefix + '-value' },
-					this.renderValue(valueArray, isOpen),
-					this.renderInput(valueArray, focusedOptionIndex)
-				),
+				_jsx('span', {
+					className: 'Select-multi-value-wrapper',
+					id: this._instancePrefix + '-value'
+				}, void 0, this.renderValue(valueArray, isOpen), this.renderInput(valueArray, focusedOptionIndex)),
 				removeMessage,
 				this.renderLoading(),
 				this.renderClear(),
@@ -1914,10 +1751,9 @@ var Select = _react2['default'].createClass({
 			isOpen ? this.renderOuter(options, !this.props.multi ? valueArray : null, focusedOption) : null
 		);
 	}
-
 });
 
-exports['default'] = Select;
+exports.default = Select;
 module.exports = exports['default'];
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
@@ -1925,7 +1761,7 @@ module.exports = exports['default'];
 (function (global){
 'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
 
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
@@ -1935,19 +1771,12 @@ var _classnames = (typeof window !== "undefined" ? window['classNames'] : typeof
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var Value = _react2['default'].createClass({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Value = _react2.default.createClass({
 
 	displayName: 'Value',
 
-	propTypes: {
-		children: _react2['default'].PropTypes.node,
-		disabled: _react2['default'].PropTypes.bool, // disabled prop passed to ReactSelect
-		id: _react2['default'].PropTypes.string, // Unique id for the value - used for aria
-		onClick: _react2['default'].PropTypes.func, // method to handle click on value label
-		onRemove: _react2['default'].PropTypes.func, // method to handle removal of the value
-		value: _react2['default'].PropTypes.object.isRequired },
-
-	// the option object for this value
 	handleMouseDown: function handleMouseDown(event) {
 		if (event.type === 'mousedown' && event.button !== 0) {
 			return;
@@ -1961,13 +1790,11 @@ var Value = _react2['default'].createClass({
 			event.stopPropagation();
 		}
 	},
-
 	onRemove: function onRemove(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		this.props.onRemove(this.props.value);
 	},
-
 	handleTouchEndRemove: function handleTouchEndRemove(event) {
 		// Check if the view is being dragged, In this case
 		// we don't want to fire the click event (because the user only wants to scroll)
@@ -1976,56 +1803,47 @@ var Value = _react2['default'].createClass({
 		// Fire the mouse events
 		this.onRemove(event);
 	},
-
 	handleTouchMove: function handleTouchMove(event) {
 		// Set a flag that the view is being dragged
 		this.dragging = true;
 	},
-
 	handleTouchStart: function handleTouchStart(event) {
 		// Set a flag that the view is not being dragged
 		this.dragging = false;
 	},
-
 	renderRemoveIcon: function renderRemoveIcon() {
 		if (this.props.disabled || !this.props.onRemove) return;
-		return _react2['default'].createElement(
-			'span',
-			{ className: 'Select-value-icon',
-				'aria-hidden': 'true',
-				onMouseDown: this.onRemove,
-				onTouchEnd: this.handleTouchEndRemove,
-				onTouchStart: this.handleTouchStart,
-				onTouchMove: this.handleTouchMove },
-			'×'
-		);
+		return _jsx('span', {
+			className: 'Select-value-icon',
+			'aria-hidden': 'true',
+			onMouseDown: this.onRemove,
+			onTouchEnd: this.handleTouchEndRemove,
+			onTouchStart: this.handleTouchStart,
+			onTouchMove: this.handleTouchMove
+		}, void 0, '\xD7');
 	},
-
 	renderLabel: function renderLabel() {
 		var className = 'Select-value-label';
-		return this.props.onClick || this.props.value.href ? _react2['default'].createElement(
-			'a',
-			{ className: className, href: this.props.value.href, target: this.props.value.target, onMouseDown: this.handleMouseDown, onTouchEnd: this.handleMouseDown },
-			this.props.children
-		) : _react2['default'].createElement(
-			'span',
-			{ className: className, role: 'option', 'aria-selected': 'true', id: this.props.id },
-			this.props.children
-		);
+		return this.props.onClick || this.props.value.href ? _jsx('a', {
+			className: className,
+			href: this.props.value.href,
+			target: this.props.value.target,
+			onMouseDown: this.handleMouseDown,
+			onTouchEnd: this.handleMouseDown
+		}, void 0, this.props.children) : _jsx('span', {
+			className: className,
+			role: 'option',
+			'aria-selected': 'true',
+			id: this.props.id
+		}, void 0, this.props.children);
 	},
-
 	render: function render() {
-		return _react2['default'].createElement(
-			'div',
-			{ className: (0, _classnames2['default'])('Select-value', this.props.value.className),
-				style: this.props.value.style,
-				title: this.props.value.title
-			},
-			this.renderRemoveIcon(),
-			this.renderLabel()
-		);
+		return _jsx('div', {
+			className: (0, _classnames2.default)('Select-value', this.props.value.className),
+			style: this.props.value.style,
+			title: this.props.value.title
+		}, void 0, this.renderRemoveIcon(), this.renderLabel());
 	}
-
 });
 
 module.exports = Value;
@@ -2038,41 +1856,42 @@ module.exports = Value;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports["default"] = arrowRenderer;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+exports.default = arrowRenderer;
 
 var _react = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 
 var _react2 = _interopRequireDefault(_react);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function arrowRenderer(_ref) {
 	var onMouseDown = _ref.onMouseDown;
 
-	return _react2["default"].createElement("span", {
+	return _jsx("span", {
 		className: "Select-arrow",
 		onMouseDown: onMouseDown
 	});
-}
-
-;
+};
 module.exports = exports["default"];
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],8:[function(require,module,exports){
 'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
 var _stripDiacritics = require('./stripDiacritics');
 
 var _stripDiacritics2 = _interopRequireDefault(_stripDiacritics);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function filterOptions(options, filterValue, excludeOptions, props) {
 	var _this = this;
 
 	if (props.ignoreAccents) {
-		filterValue = (0, _stripDiacritics2['default'])(filterValue);
+		filterValue = (0, _stripDiacritics2.default)(filterValue);
 	}
 
 	if (props.ignoreCase) {
@@ -2090,8 +1909,8 @@ function filterOptions(options, filterValue, excludeOptions, props) {
 		var valueTest = String(option[props.valueKey]);
 		var labelTest = String(option[props.labelKey]);
 		if (props.ignoreAccents) {
-			if (props.matchProp !== 'label') valueTest = (0, _stripDiacritics2['default'])(valueTest);
-			if (props.matchProp !== 'value') labelTest = (0, _stripDiacritics2['default'])(labelTest);
+			if (props.matchProp !== 'label') valueTest = (0, _stripDiacritics2.default)(valueTest);
+			if (props.matchProp !== 'value') labelTest = (0, _stripDiacritics2.default)(labelTest);
 		}
 		if (props.ignoreCase) {
 			if (props.matchProp !== 'label') valueTest = valueTest.toLowerCase();
@@ -2107,8 +1926,6 @@ module.exports = filterOptions;
 (function (global){
 'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
 var _classnames = (typeof window !== "undefined" ? window['classNames'] : typeof global !== "undefined" ? global['classNames'] : null);
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -2117,33 +1934,35 @@ var _react = (typeof window !== "undefined" ? window['React'] : typeof global !=
 
 var _react2 = _interopRequireDefault(_react);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function menuRenderer(_ref) {
-	var focusedOption = _ref.focusedOption;
-	var instancePrefix = _ref.instancePrefix;
-	var labelKey = _ref.labelKey;
-	var onFocus = _ref.onFocus;
-	var onSelect = _ref.onSelect;
-	var optionClassName = _ref.optionClassName;
-	var optionComponent = _ref.optionComponent;
-	var optionRenderer = _ref.optionRenderer;
-	var options = _ref.options;
-	var valueArray = _ref.valueArray;
-	var valueKey = _ref.valueKey;
-	var onOptionRef = _ref.onOptionRef;
+	var focusedOption = _ref.focusedOption,
+	    instancePrefix = _ref.instancePrefix,
+	    labelKey = _ref.labelKey,
+	    onFocus = _ref.onFocus,
+	    onSelect = _ref.onSelect,
+	    optionClassName = _ref.optionClassName,
+	    optionComponent = _ref.optionComponent,
+	    optionRenderer = _ref.optionRenderer,
+	    options = _ref.options,
+	    valueArray = _ref.valueArray,
+	    valueKey = _ref.valueKey,
+	    onOptionRef = _ref.onOptionRef;
 
 	var Option = optionComponent;
 
 	return options.map(function (option, i) {
 		var isSelected = valueArray && valueArray.indexOf(option) > -1;
 		var isFocused = option === focusedOption;
-		var optionClass = (0, _classnames2['default'])(optionClassName, {
+		var optionClass = (0, _classnames2.default)(optionClassName, {
 			'Select-option': true,
 			'is-selected': isSelected,
 			'is-focused': isFocused,
 			'is-disabled': option.disabled
 		});
 
-		return _react2['default'].createElement(
+		return _react2.default.createElement(
 			Option,
 			{
 				className: optionClass,
@@ -2156,8 +1975,8 @@ function menuRenderer(_ref) {
 				onSelect: onSelect,
 				option: option,
 				optionIndex: i,
-				ref: function (ref) {
-					onOptionRef(ref, isFocused);
+				ref: function ref(_ref2) {
+					onOptionRef(_ref2, isFocused);
 				}
 			},
 			optionRenderer(option, i)

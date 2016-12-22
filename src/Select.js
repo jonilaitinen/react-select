@@ -112,6 +112,7 @@ const Select = React.createClass({
 		valueKey: React.PropTypes.string,           // path of the label value in option objects
 		valueRenderer: React.PropTypes.func,        // valueRenderer: function (option) {}
 		wrapperStyle: React.PropTypes.object,       // optional style to apply to the component wrapper
+		preserveInputValue: React.PropTypes.bool,		// do not clear input value on item select
 	},
 
 	statics: { Async, AsyncCreatable, Creatable },
@@ -156,6 +157,7 @@ const Select = React.createClass({
 			tabSelectsValue: true,
 			valueComponent: Value,
 			valueKey: 'value',
+			preserveInputValue: false,
 		};
 	},
 
@@ -487,7 +489,8 @@ const Select = React.createClass({
 			case 13: // enter
 				if (!this.state.isOpen) return;
 				event.stopPropagation();
-				this.selectFocusedOption();
+				//this.selectFocusedOption();
+				this.selectValue({ value: this.state.inputValue, label: this.state.inputValue });
 			break;
 			case 27: // escape
 				if (this.state.isOpen) {
@@ -611,7 +614,7 @@ const Select = React.createClass({
 		this.hasScrolledToOption = false;
 		if (this.props.multi) {
 			this.setState({
-				inputValue: '',
+				inputValue: this.props.preserveInputValue ? this.state.inputValue : '',
 				focusedIndex: null
 			}, () => {
 				this.addValue(value);
@@ -619,7 +622,7 @@ const Select = React.createClass({
 		} else {
 			this.setState({
 				isOpen: false,
-				inputValue: '',
+				inputValue: this.props.preserveInputValue ? value.label : '',
 				isPseudoFocused: this.state.isFocused,
 			}, () => {
 				this.setValue(value);
@@ -708,7 +711,7 @@ const Select = React.createClass({
 		if (!this.state.isOpen) {
 			this.setState({
 				isOpen: true,
-				inputValue: '',
+				inputValue: this.props.preserveInputValue ? this.state.inputValue : '',
 				focusedOption: this._focusedOption || options[dir === 'next' ? 0 : options.length - 1].option
 			});
 			return;
@@ -808,6 +811,7 @@ const Select = React.createClass({
 			});
 		} else if (!this.state.inputValue) {
 			if (isOpen) onClick = null;
+			/*
 			return (
 				<ValueComponent
 					id={this._instancePrefix + '-value-item'}
@@ -819,6 +823,7 @@ const Select = React.createClass({
 					{renderLabel(valueArray[0])}
 				</ValueComponent>
 			);
+			*/
 		}
 	},
 
@@ -1056,10 +1061,10 @@ const Select = React.createClass({
 			'Select--multi': this.props.multi,
 			'Select--single': !this.props.multi,
 			'is-disabled': this.props.disabled,
-			'is-focused': this.state.isFocused,
+			'is-focused': false, //this.state.isFocused,
 			'is-loading': this.props.isLoading,
 			'is-open': isOpen,
-			'is-pseudo-focused': this.state.isPseudoFocused,
+			'is-pseudo-focused': false, //this.state.isPseudoFocused,
 			'is-searchable': this.props.searchable,
 			'has-value': valueArray.length,
 		});
