@@ -997,6 +997,7 @@ function stringifyValue(value) {
 var stringOrNode = _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.node]);
 
 var instanceId = 1;
+var hasFocusedOption = false;
 
 var _ref = _jsx('span', {
 	className: 'Select-loading-zone',
@@ -1164,7 +1165,7 @@ var Select = _react2.default.createClass({
 
 		if (this.props.openAfterFocus) {
 			this.setState({
-				isOpen: true
+				//isOpen: true,
 			});
 		}
 	},
@@ -1215,7 +1216,7 @@ var Select = _react2.default.createClass({
 		if (!this.props.searchable) {
 			this.focus();
 			return this.setState({
-				isOpen: !this.state.isOpen
+				//isOpen: !this.state.isOpen,
 			});
 		}
 
@@ -1236,12 +1237,12 @@ var Select = _react2.default.createClass({
 
 			// if the input is focused, ensure the menu is open
 			this.setState({
-				isOpen: true,
+				//isOpen: true,
 				isPseudoFocused: false
 			});
 		} else {
 			// otherwise, focus the input and open the menu
-			this._openAfterFocus = true;
+			//this._openAfterFocus = true;
 			this.focus();
 		}
 	},
@@ -1251,15 +1252,20 @@ var Select = _react2.default.createClass({
 		if (this.props.disabled || event.type === 'mousedown' && event.button !== 0) {
 			return;
 		}
-		// If the menu isn't open, let the event bubble to the main handleMouseDown
+
 		if (!this.state.isOpen) {
-			return;
+			this._openAfterFocus = true;
+			this.focus();
+			this.setState({
+				isOpen: true
+			});
+		} else {
+			// prevent default event handlers
+			event.stopPropagation();
+			event.preventDefault();
+			// close the menu
+			this.closeMenu();
 		}
-		// prevent default event handlers
-		event.stopPropagation();
-		event.preventDefault();
-		// close the menu
-		this.closeMenu();
 	},
 	handleMouseDownOnMenu: function handleMouseDownOnMenu(event) {
 		// if the event was triggered by a mousedown and not the primary
@@ -1288,6 +1294,7 @@ var Select = _react2.default.createClass({
 			});
 		}
 		this.hasScrolledToOption = false;
+		this.hasFocusedOption = false;
 	},
 	handleInputFocus: function handleInputFocus(event) {
 		if (this.props.disabled) return;
@@ -1355,6 +1362,7 @@ var Select = _react2.default.createClass({
 					event.preventDefault();
 					this.popValue();
 				}
+				this.hasFocusedOption = false;
 				return;
 			case 9:
 				// tab
@@ -1365,10 +1373,13 @@ var Select = _react2.default.createClass({
 				return;
 			case 13:
 				// enter
-				if (!this.state.isOpen) return;
+				//if (!this.state.isOpen) return;
 				event.stopPropagation();
-				//this.selectFocusedOption();
-				this.selectValue({ value: this.state.inputValue, label: this.state.inputValue });
+				if (this.hasFocusedOption) {
+					this.selectFocusedOption();
+				} else {
+					this.selectValue({ value: this.state.inputValue, label: this.state.inputValue });
+				}
 				break;
 			case 27:
 				// escape
@@ -1379,6 +1390,7 @@ var Select = _react2.default.createClass({
 					this.clearValue(event);
 					event.stopPropagation();
 				}
+				this.hasFocusedOption = false;
 				break;
 			case 38:
 				// up
@@ -1416,8 +1428,10 @@ var Select = _react2.default.createClass({
 					event.preventDefault();
 					this.popValue();
 				}
+				this.hasFocusedOption = false;
 				return;
 			default:
+				this.hasFocusedOption = false;
 				return;
 		}
 		event.preventDefault();
@@ -1591,6 +1605,8 @@ var Select = _react2.default.createClass({
 		this.focusAdjacentOption('end');
 	},
 	focusAdjacentOption: function focusAdjacentOption(dir) {
+		this.hasFocusedOption = true;
+
 		var options = this._visibleOptions.map(function (option, index) {
 			return { option: option, index: index };
 		}).filter(function (option) {
