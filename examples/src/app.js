@@ -14,9 +14,12 @@ import NumericSelect from './components/NumericSelect';
 import BooleanSelect from './components/BooleanSelect';
 import Virtualized from './components/Virtualized';
 import States from './components/States';
+import ShareSelect from './components/ShareSelect';
 
 ReactDOM.render(
 	<div>
+		<ShareSelect />
+		{/*
 		<States label="States" searchable />
 		<Multiselect label="Multiselect" />
 		<Virtualized label="Virtualized" />
@@ -30,6 +33,7 @@ ReactDOM.render(
 			hint="Enter a value that's NOT in the list, then hit return"
 			label="Custom tag creation"
 		/>
+		*/}
 	</div>,
 	document.getElementById('example')
 );
