@@ -1,10 +1,10 @@
 {
-  "name": "react-select",
+  "name": "share-select",
   "main": [
-    "dist/react-select.min.js",
-    "dist/react-select.min.css"
+    "dist/share-select.min.js",
+    "dist/share-select.min.css"
   ],
-  "version": "1.0.0-beta14",
+  "version": "1.0.0",
   "homepage": "https://github.com/JedWatson/react-select",
   "authors": [
     "Jed Watson"
